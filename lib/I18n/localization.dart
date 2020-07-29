@@ -58,7 +58,7 @@ class Localization implements WidgetsLocalizations {
 
   String get address => 'ADDRESS';
 
-  String get contact => 'CONTACT';
+  String get contract => 'CONTRACT';
 
   String get faqs => 'FAQS';
 
@@ -395,7 +395,7 @@ class $ar extends Localization {
   String get address => 'ADDRESS';
 
   @override
-  String get contact => 'CONTACT';
+  String get contract => 'CONTRACT';
 
   @override
   String get faqs => 'FAQS';
@@ -692,7 +692,7 @@ class $en extends Localization {
   String get address => 'ADDRESS';
 
   @override
-  String get contact => 'CONTACT';
+  String get contract => 'CONTRACT';
 
   @override
   String get faqs => 'FAQS';

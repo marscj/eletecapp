@@ -17,7 +17,7 @@ class Routes {
   static const String _userPage = '/users/:id';
   static String userPage({@required dynamic id}) => '/users/$id';
   static const String faqPage = '/faqs';
-  static const String contractPage = '/contact';
+  static const String contractPage = '/contract';
   static const all = <String>{
     authentication,
     _userPage,

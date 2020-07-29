@@ -129,7 +129,7 @@ class _SettingPageState extends State<SettingPage> {
                       Divider(),
                       ListTile(
                         leading: FaIcon(FontAwesomeIcons.fileContract),
-                        title: Text(Localization.of(context).contact),
+                        title: Text(Localization.of(context).contract),
                         onTap: () {},
                       ),
                       Divider(),

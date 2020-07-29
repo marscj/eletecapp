@@ -22,7 +22,7 @@ import 'package:flutter/material.dart';
       path: '/faqs',
       page: FaqPage,
     ),
-    CupertinoRoute(path: '/contact', page: ContractPage, children: [
+    CupertinoRoute(path: '/contract', page: ContractPage, children: [
       CupertinoRoute(path: '/', page: ContractListPage),
       CupertinoRoute(path: '/post/:id?', page: ContractPost)
     ])
