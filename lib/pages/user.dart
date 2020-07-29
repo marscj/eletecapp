@@ -337,19 +337,20 @@ class UserPostPage extends StatefulWidget {
 class _UserEditPageState extends State<UserPostPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(title: Text('Avatar'), actions: <Widget>[
-          FlatButton(
-            child: Text('Submit'),
-            onPressed: () {},
-          )
-        ]),
-        body: BlocProvider<UserFormBloc>(
-          create: (context) => UserFormBloc(context),
-          child: Builder(
-            builder: (context) {
-              UserFormBloc formBloc = BlocProvider.of<UserFormBloc>(context);
-              return FormBlocListener<UserFormBloc, String, String>(
+    return BlocProvider<UserFormBloc>(
+        create: (context) => UserFormBloc(context),
+        child: Builder(builder: (context) {
+          UserFormBloc formBloc = BlocProvider.of<UserFormBloc>(context);
+          return Scaffold(
+              appBar: AppBar(title: Text('Avatar'), actions: <Widget>[
+                FlatButton(
+                  child: Text('Submit'),
+                  onPressed: () {
+                    formBloc.submit();
+                  },
+                )
+              ]),
+              body: FormBlocListener<UserFormBloc, String, String>(
                   onFailure: (context, state) {
                     LoadingDialog.hide(context);
                   },
@@ -379,16 +380,14 @@ class _UserEditPageState extends State<UserPostPage> {
                                     .user
                                     .last_name),
                           onSubmitted: (value) {
-                            formBloc.submit();
+                            // formBloc.submit();
                           },
                           textInputAction: TextInputAction.done,
                           decoration: InputDecoration(
                             labelText: '',
                           )),
                     ],
-                  ));
-            },
-          ),
-        ));
+                  )));
+        }));
   }
 }
