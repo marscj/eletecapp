@@ -71,40 +71,47 @@ class _SettingPageState extends State<SettingPage> {
                                                   'assets/images/user.png')),
                                     )),
                                 SizedBox(width: 20),
-                                Container(
-                                    height: 160,
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: <Widget>[
-                                        Visibility(
-                                          visible:
-                                              !(state.user.first_name.isEmpty ||
+                                Flexible(
+                                    child: Container(
+                                        height: 160,
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: <Widget>[
+                                            Visibility(
+                                              visible: !(state.user.first_name
+                                                      .isEmpty ||
                                                   state.user.last_name.isEmpty),
-                                          child: Container(
-                                            child: Text(
-                                              '${state.user.first_name} ${state.user.last_name} ',
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 18),
+                                              child: Flexible(
+                                                child: Text(
+                                                  '${state.user.first_name} ${state.user.last_name} ',
+                                                  softWrap: false,
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                  maxLines: 2,
+                                                  style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 18),
+                                                ),
+                                              ),
                                             ),
-                                          ),
-                                        ),
-                                        Visibility(
-                                            visible: !(state
-                                                    .user.first_name.isEmpty ||
-                                                state.user.last_name.isEmpty),
-                                            child: SizedBox(
-                                              height: 20,
-                                            )),
-                                        Container(
-                                          child: Text('${state.user.username}',
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 18)),
-                                        ),
-                                      ],
-                                    ))
+                                            Visibility(
+                                                visible: !(state.user.first_name
+                                                        .isEmpty ||
+                                                    state.user.last_name
+                                                        .isEmpty),
+                                                child: SizedBox(
+                                                  height: 20,
+                                                )),
+                                            Container(
+                                              child: Text(
+                                                  '${state.user.username}',
+                                                  style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 18)),
+                                            )
+                                          ],
+                                        )))
                               ],
                             ))
                       ]))),

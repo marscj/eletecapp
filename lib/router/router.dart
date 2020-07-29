@@ -13,7 +13,7 @@ import 'package:flutter/material.dart';
         CupertinoRoute(path: '/', page: UserProfilePage),
         CupertinoRoute(path: '/photo', page: UserPhotoPage),
         CupertinoRoute(
-          path: '/post',
+          path: '/post/:field?',
           page: UserPostPage,
         ),
       ],

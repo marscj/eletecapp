@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:bloc/bloc.dart';
 import 'package:eletecapp/apis/client.dart';
 import 'package:eletecapp/bloc/app_bloc.dart';
@@ -42,14 +43,12 @@ class UserBloc extends Bloc<UserEvent, UserState> {
 }
 
 class UserFormBloc extends FormBloc<String, String> {
-  final TextFieldBloc first_name = TextFieldBloc();
-  final TextFieldBloc last_name = TextFieldBloc();
-  final TextFieldBloc email = TextFieldBloc();
+  final TextFieldBloc field = TextFieldBloc();
 
   final BuildContext context;
 
   UserFormBloc(this.context) {
-    addFieldBlocs(fieldBlocs: [first_name, last_name]);
+    addFieldBlocs(fieldBlocs: [field]);
     addValidators();
   }
 
@@ -58,16 +57,10 @@ class UserFormBloc extends FormBloc<String, String> {
       return;
     }
 
-    first_name
-        .addFieldError(errors['first_name'] ?? errors['non_field_errors']);
-    last_name.addFieldError(errors['last_name'] ?? errors['non_field_errors']);
-    email.addFieldError(errors['email'] ?? errors['non_field_errors']);
+    field.addFieldError(errors['first_name'] ?? errors['non_field_errors']);
   }
 
-  void addValidators() {
-    email.addValidators(
-        [EmailValidator(errorText: 'Email format is incorrect')]);
-  }
+  void addValidators() {}
 
   @override
   Stream<FormBlocState<String, String>> mapEventToState(FormBlocEvent event) {
@@ -77,9 +70,10 @@ class UserFormBloc extends FormBloc<String, String> {
   @override
   void onSubmitting() {
     AppBloc appBloc = BlocProvider.of<AppBloc>(context);
+    RouteData routeData = RouteData.of(context);
 
-    RestService.instance.updateUser(
-        appBloc.state.user.id, {'first_name': first_name.value}).then((user) {
+    RestService.instance.updateUser(appBloc.state.user.id,
+        {'${routeData.pathParams['field'].value}': field.value}).then((user) {
       appBloc.add(UpdateAppUser(user));
       emitSuccess(canSubmitAgain: true);
     }).catchError((onError) {

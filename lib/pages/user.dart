@@ -107,17 +107,26 @@ class _UserProfilePageState extends State<UserProfilePage> {
                     Divider(),
                     ListTile(
                       leading: Text('Fisrt Name'),
-                      trailing: Text('${state.user.first_name}'),
+                      trailing: SizedBox(
+                          width: 80,
+                          child: Align(
+                              alignment: Alignment.centerRight,
+                              child: Text('${state.user.first_name}'))),
                       onTap: () {
-                        ExtendedNavigator.of(context).push('/post');
+                        ExtendedNavigator.of(context).push('/post/first_name');
                       },
                     ),
                     Divider(),
                     ListTile(
                       leading: Text('Last Name'),
-                      trailing: Text('${state.user.last_name}'),
+                      trailing: SizedBox(
+                          width: 80,
+                          child: Align(
+                            alignment: Alignment.centerRight,
+                            child: Text('${state.user.last_name}'),
+                          )),
                       onTap: () {
-                        ExtendedNavigator.of(context).push('/post');
+                        ExtendedNavigator.of(context).push('/post/last_name');
                       },
                     )
                   ],
@@ -352,12 +361,19 @@ class _UserEditPageState extends State<UserPostPage> {
                         const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                     children: <Widget>[
                       TextFieldBlocBuilder(
-                          textFieldBloc: formBloc.first_name
-                            ..updateInitialValue(
-                                BlocProvider.of<AppBloc>(context)
+                          textFieldBloc: formBloc.field
+                            ..updateInitialValue(RouteData.of(context)
+                                        .pathParams['field']
+                                        .value ==
+                                    'first_name'
+                                ? BlocProvider.of<AppBloc>(context)
                                     .state
                                     .user
-                                    .first_name),
+                                    .first_name
+                                : BlocProvider.of<AppBloc>(context)
+                                    .state
+                                    .user
+                                    .last_name),
                           onSubmitted: (value) {
                             formBloc.submit();
                           },

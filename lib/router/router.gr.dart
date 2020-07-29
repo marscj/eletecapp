@@ -54,11 +54,12 @@ class Router extends RouterBase {
 class UserPageRoutes {
   static const String userProfilePage = '/';
   static const String userPhotoPage = '/photo';
-  static const String userPostPage = '/post';
+  static const String _userPostPage = '/post/:field?';
+  static String userPostPage({dynamic field = ''}) => '/post/$field';
   static const all = <String>{
     userProfilePage,
     userPhotoPage,
-    userPostPage,
+    _userPostPage,
   };
 }
 
@@ -68,7 +69,7 @@ class UserPageRouter extends RouterBase {
   final _routes = <RouteDef>[
     RouteDef(UserPageRoutes.userProfilePage, page: UserProfilePage),
     RouteDef(UserPageRoutes.userPhotoPage, page: UserPhotoPage),
-    RouteDef(UserPageRoutes.userPostPage, page: UserPostPage),
+    RouteDef(UserPageRoutes._userPostPage, page: UserPostPage),
   ];
   @override
   Map<Type, AutoRouteFactory> get pagesMap => _pagesMap;
