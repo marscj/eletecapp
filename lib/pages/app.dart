@@ -1,6 +1,7 @@
-import 'package:auto_route/auto_route_annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:country_code_picker/country_localizations.dart';
 import 'package:eletecapp/bloc/app_bloc.dart';
+import 'package:eletecapp/router/router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -8,7 +9,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:google_map_location_picker/generated/i18n.dart'
     as location_picker;
 
-import 'package:eletecapp/router/old_router.dart';
 import 'package:eletecapp/I18n/i18n.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
@@ -38,6 +38,10 @@ class _EletecAppState extends State<EletecApp> {
             Locale('en', ''),
             Locale('ar', ''),
           ],
+          builder: ExtendedNavigator.builder<Router>(
+            router: Router(),
+            builder: (context, child) => child,
+          ),
           // onGenerateRoute: Router.instance.generator,
 
           theme: ThemeData(

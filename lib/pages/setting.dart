@@ -1,8 +1,8 @@
 import 'dart:ui';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:eletecapp/I18n/i18n.dart';
 import 'package:eletecapp/bloc/app_bloc.dart';
-import 'package:eletecapp/router/old_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -17,12 +17,12 @@ class _SettingPageState extends State<SettingPage> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AppBloc, AppState>(
-      builder: (context, state) {
+      builder: (BuildContext context, state) {
         return ListView(
             padding: const EdgeInsets.symmetric(horizontal: 8),
             children: <Widget>[
               GestureDetector(
-                  onTap: () => Router.instance.navigateTo(context, '/user'),
+                  onTap: () => ExtendedNavigator.of(context).push('/users/1'),
                   child: Container(
                       height: 160,
                       child: Stack(children: <Widget>[

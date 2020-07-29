@@ -1,15 +1,20 @@
+import 'package:auto_route/auto_route_annotations.dart';
+import 'package:eletecapp/pages/pages.dart';
+import 'package:flutter/material.dart';
+
 @MaterialAutoRouter(
-  generateNavigationHelperExtension: true,
+  // generateNavigationHelperExtension: true,
   routes: <AutoRoute>[
     CupertinoRoute(page: Authentication, initial: true),
-    MaterialRoute<void>(
+    MaterialRoute<Widget>(
       path: '/users/:id',
       page: UserPage,
       children: [
+        AdaptiveRoute(path: '/', page: UserProfilePage),
         AdaptiveRoute(path: '/photo', page: UserPhotoPage),
         AdaptiveRoute(
           path: '/post',
-          page: UserEditPage,
+          page: UserPostPage,
         ),
       ],
     ),
@@ -17,4 +22,4 @@
     // AdaptiveRoute(path: '*', page: UnknownRouteScreen)
   ],
 )
-class $Routers {}
+class $Router {}

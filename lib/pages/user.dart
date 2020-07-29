@@ -1,7 +1,8 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:eletecapp/bloc/app_bloc.dart';
 import 'package:eletecapp/bloc/user_bloc.dart';
-import 'package:eletecapp/router/old_router.dart';
+import 'package:eletecapp/router/router.gr.dart';
 import 'package:eletecapp/views/loading_dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -45,66 +46,79 @@ class UserPage extends StatefulWidget {
 class _UserPageState extends State<UserPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('USER PROFILE'),
-      ),
-      body: BlocBuilder<AppBloc, AppState>(builder: (context, state) {
-        return ListView(
-          children: <Widget>[
-            Card(
-              color: Colors.white,
-              child: ListBody(
-                children: <Widget>[
-                  Container(
-                    padding: const EdgeInsets.only(top: 8),
-                    child: ListTile(
-                        onTap: () => Router.instance
-                            .navigateTo(context, Routes.userPhoto),
-                        leading: Text('avatar'),
-                        trailing: Hero(
-                          tag: 'photo',
-                          child: Container(
-                              width: 64,
-                              height: 64,
-                              alignment: Alignment.center,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.rectangle,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(8)),
-                                image: DecorationImage(
-                                    image:
-                                        state.user?.photo['thumbnail'] != null
-                                            ? NetworkImage(
-                                                state.user?.photo['thumbnail'])
-                                            : ExactAssetImage(
-                                                'assets/images/user.png')),
-                              )),
-                        )),
-                  ),
-                  Divider(),
-                  ListTile(
-                    leading: Text('Fisrt Name'),
-                    trailing: Text('${state.user.first_name}'),
-                    onTap: () {
-                      Router.instance.navigateTo(context, Routes.userEdit);
-                    },
-                  ),
-                  Divider(),
-                  ListTile(
-                    leading: Text('Last Name'),
-                    trailing: Text('${state.user.last_name}'),
-                    onTap: () {
-                      Router.instance.navigateTo(context, Routes.userEdit);
-                    },
-                  )
-                ],
-              ),
-            )
-          ],
-        );
-      }),
+    return ExtendedNavigator(
+      name: 'user',
+      initialRoute: UserPageRoutes.userProfilePage,
     );
+  }
+}
+
+class UserProfilePage extends StatefulWidget {
+  @override
+  _UserProfilePageState createState() => _UserProfilePageState();
+}
+
+class _UserProfilePageState extends State<UserProfilePage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: Text('USER PROFILE'),
+        ),
+        body: BlocBuilder<AppBloc, AppState>(builder: (context, state) {
+          return ListView(
+            children: <Widget>[
+              Card(
+                color: Colors.white,
+                child: ListBody(
+                  children: <Widget>[
+                    Container(
+                      padding: const EdgeInsets.only(top: 8),
+                      child: ListTile(
+                          onTap: () => context.navigator.push('/photo'),
+                          leading: Text('avatar'),
+                          trailing: Hero(
+                            tag: 'photo',
+                            child: Container(
+                                width: 64,
+                                height: 64,
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.rectangle,
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(8)),
+                                  image: DecorationImage(
+                                      image: state.user?.photo['thumbnail'] !=
+                                              null
+                                          ? NetworkImage(
+                                              state.user?.photo['thumbnail'])
+                                          : ExactAssetImage(
+                                              'assets/images/user.png')),
+                                )),
+                          )),
+                    ),
+                    Divider(),
+                    ListTile(
+                      leading: Text('Fisrt Name'),
+                      trailing: Text('${state.user.first_name}'),
+                      onTap: () {
+                        ExtendedNavigator.of(context).push('/post');
+                      },
+                    ),
+                    Divider(),
+                    ListTile(
+                      leading: Text('Last Name'),
+                      trailing: Text('${state.user.last_name}'),
+                      onTap: () {
+                        ExtendedNavigator.of(context).push('/post');
+                      },
+                    )
+                  ],
+                ),
+              )
+            ],
+          );
+        }));
   }
 }
 
@@ -295,12 +309,12 @@ class _UserPhotoPageState extends State<UserPhotoPage> {
   }
 }
 
-class UserEditPage extends StatefulWidget {
+class UserPostPage extends StatefulWidget {
   @override
   _UserEditPageState createState() => _UserEditPageState();
 }
 
-class _UserEditPageState extends State<UserEditPage> {
+class _UserEditPageState extends State<UserPostPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
