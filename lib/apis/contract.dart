@@ -5,7 +5,7 @@ part of 'client.dart';
 
 @JsonSerializable()
 class Visit extends Equatable {
-  String service;
+  int service;
   int count;
 
   @override

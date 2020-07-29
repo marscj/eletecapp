@@ -168,7 +168,7 @@ Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
 
 Visit _$VisitFromJson(Map<String, dynamic> json) {
   return Visit()
-    ..service = json['service'] as String
+    ..service = json['service'] as int
     ..count = json['count'] as int;
 }
 
