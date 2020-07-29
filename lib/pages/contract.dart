@@ -44,7 +44,6 @@ class _ContractListPageState extends State<ContractListPage> {
         body: BlocBuilder<ContractBloc, ContractState>(
           builder: (context, state) {
             ContractBloc bloc = BlocProvider.of<ContractBloc>(context);
-
             return SmartRefresher(
               enablePullDown: true,
               enablePullUp: state.list.length < state.totalCount,
@@ -72,9 +71,8 @@ class _ContractListPageState extends State<ContractListPage> {
               controller: bloc.refreshController,
               onRefresh: () => bloc.add(ContractRefreshList()),
               onLoading: () => bloc.add(ContractLoadList()),
-              child: ListView.separated(
+              child: ListView.builder(
                 padding: const EdgeInsets.symmetric(horizontal: 8),
-                separatorBuilder: (_, index) => new Divider(),
                 itemBuilder: (c, i) => ContractItem(
                   data: state.list[i],
                 ),
@@ -103,23 +101,32 @@ class _ContractItemState extends State<ContractItem> {
           secondaryHeaderColor: Colors.indigo, // card header background
           cardColor: Colors.white, // card field background
           buttonColor: Colors.indigo, // button background color
-          textTheme: TextTheme(
-            button: TextStyle(color: Colors.white), // button text
-            subtitle1: TextStyle(color: Colors.black87), // input text
-            headline6: TextStyle(color: Colors.white), // card header text
-          ),
+          textTheme: Theme.of(context).textTheme.copyWith(
+                button: Theme.of(context)
+                    .textTheme
+                    .button
+                    .copyWith(color: Colors.white), // button text
+                subtitle1: Theme.of(context)
+                    .textTheme
+                    .subtitle1
+                    .copyWith(color: Colors.black87), // input text
+                headline6: Theme.of(context)
+                    .textTheme
+                    .headline6
+                    .copyWith(color: Colors.white), // card header text
+              ),
           inputDecorationTheme: InputDecorationTheme(
             labelStyle: TextStyle(color: Colors.black87), // style for labels
           ),
           cardTheme: CardTheme(
-              elevation: 4.0,
               shape: RoundedRectangleBorder(
-                side: BorderSide(width: 1, color: Colors.indigo),
-                borderRadius: BorderRadius.circular(8),
-              ))),
+            side: BorderSide(width: 1, color: Colors.grey),
+            borderRadius: BorderRadius.circular(8),
+          ))),
       child: CardSettings.sectioned(
         showMaterialonIOS: true,
         labelWidth: 100,
+        fieldPadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 14),
         children: [
           CardSettingsSection(
             header: CardSettingsHeader(
@@ -127,14 +134,60 @@ class _ContractItemState extends State<ContractItem> {
             ),
             children: [
               CardSettingsText(
-                label: '${widget.data.contractID}',
-                initialValue: '${widget.data.id}',
-                validator: (value) {
-                  if (value == null || value.isEmpty)
-                    return 'Title is required.';
-                },
-                // onSaved: (value) => title = value,
+                label: 'Option',
+                initialValue:
+                    '${Localization.of(context).contractOption[widget.data.option]}',
+                enabled: false,
               ),
+              CardSettingsText(
+                label: 'Issue Date',
+                initialValue: '${widget.data.issue_date}',
+                enabled: false,
+              ),
+              CardSettingsText(
+                label: 'Expiry Date',
+                initialValue: '${widget.data.expiry_date}',
+                enabled: false,
+              ),
+              CardSettingsText(
+                label: 'Expiry Date',
+                initialValue: '${widget.data.expiry_date}',
+                enabled: false,
+              ),
+              CardSettingsParagraph(
+                  label: 'Address',
+                  initialValue: widget.data.address != null
+                      ? '${widget.data.address}'
+                      : '',
+                  enabled: false,
+                  numberOfLines: 3),
+              CardSettingsParagraph(
+                  label: 'Remark',
+                  initialValue:
+                      widget.data.remark != null ? '${widget.data.remark}' : '',
+                  enabled: false,
+                  numberOfLines: 3),
+              CardSettingsField(
+                fieldPadding: null,
+                labelAlign: null,
+                requiredIndicator: null,
+                enabled: false,
+                contentOnNewLine: true,
+                label: 'Visit',
+                content: Container(
+                    alignment: Alignment.topLeft,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: widget.data.visits != null
+                          ? widget.data.visits
+                              .map((e) => ListTile(
+                                    title: Text(
+                                        '${Localization.of(context).serviceType[e.service]} : ${e.count}'),
+                                  ))
+                              .toList()
+                          : Container(),
+                    )),
+              )
             ],
           )
         ],

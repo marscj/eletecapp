@@ -86,6 +86,9 @@ class Localization implements WidgetsLocalizations {
 
   String get userProfile => 'User Profile';
 
+  List<String> get contractOption =>
+      ['Economy', 'Standard', 'Premium', 'Customized'];
+
   List<String> get orderStatus => [
         'New',
         'Confirm',
@@ -437,6 +440,10 @@ class $ar extends Localization {
   String get userProfile => 'User Profile';
 
   @override
+  List<String> get contractOption =>
+      ['Economy', 'Standard', 'Premium', 'Customized'];
+
+  @override
   List<String> get orderStatus => [
         'New',
         'Confirm',
@@ -732,6 +739,10 @@ class $en extends Localization {
 
   @override
   String get userProfile => 'User Profile';
+
+  @override
+  List<String> get contractOption =>
+      ['Economy', 'Standard', 'Premium', 'Customized'];
 
   @override
   List<String> get orderStatus => [

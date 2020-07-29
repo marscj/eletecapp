@@ -118,7 +118,6 @@ class _SettingPageState extends State<SettingPage> {
               SizedBox(height: 15),
               Card(
                   elevation: 3,
-                  color: Colors.grey[50],
                   child: ListBody(
                     children: <Widget>[
                       ListTile(
