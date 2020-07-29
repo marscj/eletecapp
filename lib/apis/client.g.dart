@@ -166,12 +166,41 @@ Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
       'photo': instance.photo,
     };
 
+Visit _$VisitFromJson(Map<String, dynamic> json) {
+  return Visit()
+    ..service = json['service'] as String
+    ..count = json['count'] as int;
+}
+
+Map<String, dynamic> _$VisitToJson(Visit instance) => <String, dynamic>{
+      'service': instance.service,
+      'count': instance.count,
+    };
+
 Contract _$ContractFromJson(Map<String, dynamic> json) {
-  return Contract()..id = json['id'] as int;
+  return Contract()
+    ..id = json['id'] as int
+    ..contractID = json['contractID'] as String
+    ..option = json['option'] as int
+    ..issue_date = json['issue_date'] as String
+    ..expiry_date = json['expiry_date'] as String
+    ..address = json['address'] as String
+    ..remark = json['remark'] as String
+    ..visits = (json['visits'] as List)
+        ?.map(
+            (e) => e == null ? null : Visit.fromJson(e as Map<String, dynamic>))
+        ?.toList();
 }
 
 Map<String, dynamic> _$ContractToJson(Contract instance) => <String, dynamic>{
       'id': instance.id,
+      'contractID': instance.contractID,
+      'option': instance.option,
+      'issue_date': instance.issue_date,
+      'expiry_date': instance.expiry_date,
+      'address': instance.address,
+      'remark': instance.remark,
+      'visits': instance.visits,
     };
 
 ContractList _$ContractListFromJson(Map<String, dynamic> json) {
