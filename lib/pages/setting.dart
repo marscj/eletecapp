@@ -8,8 +8,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 // ignore_for_file: close_sinks
+class SettingPage extends StatefulWidget {
+  @override
+  _SettingPageState createState() => _SettingPageState();
+}
 
-class SettingPage extends StatelessWidget {
+class _SettingPageState extends State<SettingPage> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AppBloc, AppState>(

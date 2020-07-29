@@ -14,7 +14,7 @@ class Routes {
         handler: fluro.Handler(handlerFunc: (_, __) => Authentication()));
 
     router.define(user,
-        handler: fluro.Handler(handlerFunc: (_, __) => UserDetailPage()));
+        handler: fluro.Handler(handlerFunc: (_, __) => UserPage()));
 
     router.define(userPhoto,
         handler: fluro.Handler(handlerFunc: (_, __) => UserPhotoPage()));
