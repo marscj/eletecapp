@@ -306,8 +306,12 @@ class _UserPhotoPageState extends State<UserPhotoPage> {
                               child: PhotoView(
                                   heroAttributes: const PhotoViewHeroAttributes(
                                       tag: "photo"),
-                                  imageProvider: NetworkImage(
-                                      state.user?.photo['thumbnail']))),
+                                  imageProvider:
+                                      state.user?.photo['full_size'] != null
+                                          ? NetworkImage(
+                                              state.user?.photo['full_size'])
+                                          : ExactAssetImage(
+                                              'assets/images/user.png'))),
                           BlocBuilder<UserBloc, UserState>(
                             builder: (context, state) {
                               return Center(
