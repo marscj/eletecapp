@@ -46,9 +46,11 @@ class UserPage extends StatefulWidget {
 class _UserPageState extends State<UserPage> {
   @override
   Widget build(BuildContext context) {
-    return ExtendedNavigator(
-      name: 'user',
-      initialRoute: UserPageRoutes.userProfilePage,
+    return Container(
+      child: ExtendedNavigator(
+        name: 'user',
+        initialRoute: UserPageRoutes.userProfilePage,
+      ),
     );
   }
 }
@@ -64,6 +66,11 @@ class _UserProfilePageState extends State<UserProfilePage> {
     return Scaffold(
         appBar: AppBar(
           title: Text('USER PROFILE'),
+          leading: BackButton(
+            onPressed: () {
+              context.navigator.root.pop();
+            },
+          ),
         ),
         body: BlocBuilder<AppBloc, AppState>(builder: (context, state) {
           return ListView(

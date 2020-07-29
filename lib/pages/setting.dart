@@ -22,7 +22,8 @@ class _SettingPageState extends State<SettingPage> {
             padding: const EdgeInsets.symmetric(horizontal: 8),
             children: <Widget>[
               GestureDetector(
-                  onTap: () => ExtendedNavigator.of(context).push('/users/1'),
+                  onTap: () =>
+                      context.navigator.push('/users/${state.user.id}'),
                   child: Container(
                       height: 160,
                       child: Stack(children: <Widget>[
