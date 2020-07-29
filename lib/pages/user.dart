@@ -110,154 +110,167 @@ class UserPhotoPage extends StatefulWidget {
 
 class _UserPhotoPageState extends State<UserPhotoPage> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
-    return Theme(
-        data: Theme.of(context).copyWith(
-            buttonTheme: ButtonThemeData(textTheme: ButtonTextTheme.normal),
-            appBarTheme: AppBarTheme(
-                elevation: 0,
-                color: Colors.black,
-                iconTheme: IconThemeData(color: Colors.white),
-                textTheme: GoogleFonts.righteousTextTheme(
-                  Theme.of(context).textTheme.apply(
-                      displayColor: Colors.white, bodyColor: Colors.white),
-                ),
-                brightness: Brightness.dark)),
-        child: Scaffold(
-            key: _scaffoldKey,
-            appBar: AppBar(
-              title: Text('Avatar'),
-              actions: <Widget>[
-                IconButton(
-                    icon: Icon(Icons.more_horiz),
-                    onPressed: () {
-                      _scaffoldKey.currentState.showBottomSheet<void>(
-                        (_) {
-                          return Container(
-                            height: 200,
-                            color: Colors.white,
-                            child: Align(
-                              alignment: Alignment.topCenter,
-                              child: Column(
-                                children: <Widget>[
-                                  FlatButton(
-                                    child: Text('Camera'),
-                                    onPressed: () async {
-                                      await ImagePicker()
-                                          .getImage(source: ImageSource.camera)
-                                          .then((file) {
-                                        if (file != null) {
-                                          return ImageCropper.cropImage(
-                                              sourcePath: file.path,
-                                              maxHeight: 400,
-                                              maxWidth: 400,
-                                              aspectRatio: CropAspectRatio(
-                                                  ratioX: 1.0, ratioY: 1.0),
-                                              androidUiSettings:
-                                                  AndroidUiSettings(
-                                                      toolbarTitle: 'Cropper',
-                                                      toolbarColor:
-                                                          Colors.deepOrange,
-                                                      toolbarWidgetColor:
-                                                          Colors.white,
-                                                      initAspectRatio:
-                                                          CropAspectRatioPreset
-                                                              .original,
-                                                      lockAspectRatio: false),
-                                              iosUiSettings: IOSUiSettings(
-                                                minimumAspectRatio: 1.0,
-                                              )).then((value) {
-                                            if (value != null) {
-                                              Navigator.pop(context);
-                                              // BlocProvider.of<AppBloc>(context)
-                                              //     .add(UploadUserPhoto(value));
-                                            }
-                                          });
-                                        }
-                                        return null;
-                                      });
-                                    },
-                                  ),
-                                  Divider(
-                                    color: Colors.grey,
-                                  ),
-                                  FlatButton(
-                                    child: Text('Gallery'),
-                                    onPressed: () async {
-                                      await ImagePicker()
-                                          .getImage(source: ImageSource.gallery)
-                                          .then((file) {
-                                        if (file != null) {
-                                          return ImageCropper.cropImage(
-                                              sourcePath: file.path,
-                                              maxHeight: 400,
-                                              maxWidth: 400,
-                                              aspectRatio: CropAspectRatio(
-                                                  ratioX: 1.0, ratioY: 1.0),
-                                              androidUiSettings:
-                                                  AndroidUiSettings(
-                                                      toolbarTitle: 'Cropper',
-                                                      toolbarColor:
-                                                          Colors.deepOrange,
-                                                      toolbarWidgetColor:
-                                                          Colors.white,
-                                                      initAspectRatio:
-                                                          CropAspectRatioPreset
-                                                              .original,
-                                                      lockAspectRatio: false),
-                                              iosUiSettings: IOSUiSettings(
-                                                minimumAspectRatio: 1.0,
-                                              )).then((value) {
-                                            if (value != null) {
-                                              Navigator.pop(context);
-                                              // BlocProvider.of<AppBloc>(context)
-                                              //     .add(UploadUserPhoto(value));
-                                            }
-                                          });
-                                        }
-                                        return null;
-                                      });
-                                    },
-                                  ),
-                                  Divider(
-                                    height: 20,
-                                    thickness: 6,
-                                  ),
-                                  FlatButton(
-                                    child: Text('Cancel'),
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                    },
-                                  )
-                                ],
-                              ),
-                            ),
-                          );
-                        },
-                      );
-                    })
-              ],
-            ),
-            body: BlocBuilder<AppBloc, AppState>(builder: (context, state) {
-              return Stack(
-                children: <Widget>[
-                  Center(
-                      child: PhotoView(
-                          heroAttributes:
-                              const PhotoViewHeroAttributes(tag: "photo"),
-                          imageProvider:
-                              NetworkImage(state.user?.photo['thumbnail']))),
-                  Center(
-                      child: Visibility(
-                    // visible: state.loading,
-                    child: CupertinoActivityIndicator(
-                      radius: 40,
+    return BlocProvider<UserBloc>(
+        create: (context) => UserBloc(context),
+        child: Theme(
+            data: Theme.of(context).copyWith(
+                buttonTheme: ButtonThemeData(textTheme: ButtonTextTheme.normal),
+                appBarTheme: AppBarTheme(
+                    elevation: 0,
+                    color: Colors.black,
+                    iconTheme: IconThemeData(color: Colors.white),
+                    textTheme: GoogleFonts.righteousTextTheme(
+                      Theme.of(context).textTheme.apply(
+                          displayColor: Colors.white, bodyColor: Colors.white),
                     ),
-                  ))
-                ],
-              );
-            })));
+                    brightness: Brightness.dark)),
+            child: Scaffold(
+                key: _scaffoldKey,
+                appBar: AppBar(
+                  title: Text('Avatar'),
+                  actions: <Widget>[
+                    IconButton(
+                        icon: Icon(Icons.more_horiz),
+                        onPressed: () {
+                          _scaffoldKey.currentState.showBottomSheet<void>(
+                            (_) {
+                              return Container(
+                                height: 200,
+                                color: Colors.white,
+                                child: Align(
+                                  alignment: Alignment.topCenter,
+                                  child: Column(
+                                    children: <Widget>[
+                                      FlatButton(
+                                        child: Text('Camera'),
+                                        onPressed: () async {
+                                          await ImagePicker()
+                                              .getImage(
+                                                  source: ImageSource.camera)
+                                              .then((file) {
+                                            if (file != null) {
+                                              return ImageCropper.cropImage(
+                                                  sourcePath: file.path,
+                                                  maxHeight: 400,
+                                                  maxWidth: 400,
+                                                  aspectRatio: CropAspectRatio(
+                                                      ratioX: 1.0, ratioY: 1.0),
+                                                  androidUiSettings:
+                                                      AndroidUiSettings(
+                                                          toolbarTitle:
+                                                              'Cropper',
+                                                          toolbarColor:
+                                                              Colors.deepOrange,
+                                                          toolbarWidgetColor:
+                                                              Colors.white,
+                                                          initAspectRatio:
+                                                              CropAspectRatioPreset
+                                                                  .original,
+                                                          lockAspectRatio:
+                                                              false),
+                                                  iosUiSettings: IOSUiSettings(
+                                                    minimumAspectRatio: 1.0,
+                                                  )).then((value) {
+                                                if (value != null) {
+                                                  Navigator.pop(context);
+                                                  // BlocProvider.of<AppBloc>(context)
+                                                  //     .add(UploadUserPhoto(value));
+                                                }
+                                              });
+                                            }
+                                            return null;
+                                          });
+                                        },
+                                      ),
+                                      Divider(
+                                        color: Colors.grey,
+                                      ),
+                                      FlatButton(
+                                        child: Text('Gallery'),
+                                        onPressed: () async {
+                                          await ImagePicker()
+                                              .getImage(
+                                                  source: ImageSource.gallery)
+                                              .then((file) {
+                                            if (file != null) {
+                                              return ImageCropper.cropImage(
+                                                  sourcePath: file.path,
+                                                  maxHeight: 400,
+                                                  maxWidth: 400,
+                                                  aspectRatio: CropAspectRatio(
+                                                      ratioX: 1.0, ratioY: 1.0),
+                                                  androidUiSettings:
+                                                      AndroidUiSettings(
+                                                          toolbarTitle:
+                                                              'Cropper',
+                                                          toolbarColor:
+                                                              Colors.deepOrange,
+                                                          toolbarWidgetColor:
+                                                              Colors.white,
+                                                          initAspectRatio:
+                                                              CropAspectRatioPreset
+                                                                  .original,
+                                                          lockAspectRatio:
+                                                              false),
+                                                  iosUiSettings: IOSUiSettings(
+                                                    minimumAspectRatio: 1.0,
+                                                  )).then((value) {
+                                                if (value != null) {
+                                                  Navigator.pop(context);
+                                                  // BlocProvider.of<AppBloc>(context)
+                                                  //     .add(UploadUserPhoto(value));
+                                                }
+                                              });
+                                            }
+                                            return null;
+                                          });
+                                        },
+                                      ),
+                                      Divider(
+                                        height: 20,
+                                        thickness: 6,
+                                      ),
+                                      FlatButton(
+                                        child: Text('Cancel'),
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                        },
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              );
+                            },
+                          );
+                        })
+                  ],
+                ),
+                body: BlocBuilder<AppBloc, AppState>(builder: (context, state) {
+                  return Stack(
+                    children: <Widget>[
+                      Center(
+                          child: PhotoView(
+                              heroAttributes:
+                                  const PhotoViewHeroAttributes(tag: "photo"),
+                              imageProvider: NetworkImage(
+                                  state.user?.photo['thumbnail']))),
+                      BlocBuilder<UserBloc, UserState>(
+                        builder: (context, state) {
+                          return Center(
+                              child: Visibility(
+                            visible: state.isLoading,
+                            child: CupertinoActivityIndicator(
+                              radius: 40,
+                            ),
+                          ));
+                        },
+                      )
+                    ],
+                  );
+                }))));
   }
 }
 
