@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:eletecapp/I18n/i18n.dart';
 import 'package:eletecapp/bloc/app_bloc.dart';
-import 'package:eletecapp/router/router.dart';
+import 'package:eletecapp/router/old_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

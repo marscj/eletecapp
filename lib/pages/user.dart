@@ -1,7 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:eletecapp/bloc/app_bloc.dart';
 import 'package:eletecapp/bloc/user_bloc.dart';
-import 'package:eletecapp/router/router.dart';
+import 'package:eletecapp/router/old_router.dart';
 import 'package:eletecapp/views/loading_dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

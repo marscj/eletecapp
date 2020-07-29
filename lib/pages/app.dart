@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route_annotations.dart';
 import 'package:country_code_picker/country_localizations.dart';
 import 'package:eletecapp/bloc/app_bloc.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +8,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:google_map_location_picker/generated/i18n.dart'
     as location_picker;
 
-import 'package:eletecapp/router/router.dart';
+import 'package:eletecapp/router/old_router.dart';
 import 'package:eletecapp/I18n/i18n.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
@@ -37,6 +38,8 @@ class _EletecAppState extends State<EletecApp> {
             Locale('en', ''),
             Locale('ar', ''),
           ],
+          // onGenerateRoute: Router.instance.generator,
+
           theme: ThemeData(
               primarySwatch: Colors.indigo,
               accentColor: Colors.indigoAccent,
@@ -62,7 +65,6 @@ class _EletecAppState extends State<EletecApp> {
               highlightColor: Colors.indigoAccent,
               hoverColor: Colors.indigoAccent.withOpacity(0.04),
               splashColor: Colors.indigoAccent),
-          onGenerateRoute: Router.instance.generator,
         );
       }));
 }
