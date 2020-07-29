@@ -42,8 +42,6 @@ class _EletecAppState extends State<EletecApp> {
             router: Router(),
             builder: (context, child) => child,
           ),
-          // onGenerateRoute: Router.instance.generator,
-
           theme: ThemeData(
               primarySwatch: Colors.indigo,
               accentColor: Colors.indigoAccent,

@@ -6,20 +6,18 @@ import 'package:flutter/material.dart';
   // generateNavigationHelperExtension: true,
   routes: <AutoRoute>[
     CupertinoRoute(page: Authentication, initial: true),
-    MaterialRoute<Widget>(
+    CupertinoRoute<Widget>(
       path: '/users/:id',
       page: UserPage,
       children: [
-        AdaptiveRoute(path: '/', page: UserProfilePage),
-        AdaptiveRoute(path: '/photo', page: UserPhotoPage),
-        AdaptiveRoute(
+        CupertinoRoute(path: '/', page: UserProfilePage),
+        CupertinoRoute(path: '/photo', page: UserPhotoPage),
+        CupertinoRoute(
           path: '/post',
           page: UserPostPage,
         ),
       ],
     ),
-    // AdaptiveRoute<bool>(path: "/login", page: LoginScreen),
-    // AdaptiveRoute(path: '*', page: UnknownRouteScreen)
   ],
 )
 class $Router {}
