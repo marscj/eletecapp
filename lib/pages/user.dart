@@ -1,5 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:eletecapp/I18n/i18n.dart';
 import 'package:eletecapp/bloc/app_bloc.dart';
 import 'package:eletecapp/bloc/user_bloc.dart';
 import 'package:eletecapp/router/router.gr.dart';
@@ -65,7 +66,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('USER PROFILE'),
+          title: Text(Localization.of(context).userProfile),
           leading: BackButton(
             onPressed: () {
               context.navigator.root.pop();
@@ -80,16 +81,16 @@ class _UserProfilePageState extends State<UserProfilePage> {
                 child: ListBody(
                   children: <Widget>[
                     Container(
-                      padding: const EdgeInsets.only(top: 8),
+                      height: 100,
+                      alignment: Alignment.center,
                       child: ListTile(
                           onTap: () => context.navigator.push('/photo'),
-                          leading: Text('avatar'),
+                          leading: Text(Localization.of(context).avatar),
                           trailing: Hero(
                             tag: 'photo',
                             child: Container(
-                                width: 64,
-                                height: 64,
-                                alignment: Alignment.center,
+                                width: 56,
+                                alignment: Alignment.centerRight,
                                 decoration: BoxDecoration(
                                   shape: BoxShape.rectangle,
                                   borderRadius:
@@ -106,7 +107,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                     ),
                     Divider(),
                     ListTile(
-                      leading: Text('Fisrt Name'),
+                      leading: Text(Localization.of(context).firstName),
                       trailing: SizedBox(
                           width: 80,
                           child: Align(
@@ -118,7 +119,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                     ),
                     Divider(),
                     ListTile(
-                      leading: Text('Last Name'),
+                      leading: Text(Localization.of(context).lastName),
                       trailing: SizedBox(
                           width: 80,
                           child: Align(
@@ -168,7 +169,7 @@ class _UserPhotoPageState extends State<UserPhotoPage> {
                 child: Scaffold(
                     key: _scaffoldKey,
                     appBar: AppBar(
-                      title: Text('Avatar'),
+                      title: Text(Localization.of(context).avatar),
                       actions: <Widget>[
                         IconButton(
                             icon: Icon(Icons.more_horiz),
@@ -183,7 +184,8 @@ class _UserPhotoPageState extends State<UserPhotoPage> {
                                       child: Column(
                                         children: <Widget>[
                                           FlatButton(
-                                            child: Text('Camera'),
+                                            child: Text(Localization.of(context)
+                                                .camera),
                                             onPressed: () async {
                                               await ImagePicker()
                                                   .getImage(
@@ -233,7 +235,8 @@ class _UserPhotoPageState extends State<UserPhotoPage> {
                                             color: Colors.grey,
                                           ),
                                           FlatButton(
-                                            child: Text('Gallery'),
+                                            child: Text(Localization.of(context)
+                                                .gallery),
                                             onPressed: () async {
                                               await ImagePicker()
                                                   .getImage(
@@ -284,7 +287,8 @@ class _UserPhotoPageState extends State<UserPhotoPage> {
                                             thickness: 6,
                                           ),
                                           FlatButton(
-                                            child: Text('Cancel'),
+                                            child: Text(Localization.of(context)
+                                                .cancel),
                                             onPressed: () {
                                               Navigator.pop(context);
                                             },
@@ -342,14 +346,19 @@ class _UserEditPageState extends State<UserPostPage> {
         child: Builder(builder: (context) {
           UserFormBloc formBloc = BlocProvider.of<UserFormBloc>(context);
           return Scaffold(
-              appBar: AppBar(title: Text('Avatar'), actions: <Widget>[
-                FlatButton(
-                  child: Text('Submit'),
-                  onPressed: () {
-                    formBloc.submit();
-                  },
-                )
-              ]),
+              appBar: AppBar(
+                  title: Text(RouteData.of(context).pathParams['field'].value ==
+                          'first_name'
+                      ? Localization.of(context).firstName
+                      : Localization.of(context).lastName),
+                  actions: <Widget>[
+                    FlatButton(
+                      child: Text(Localization.of(context).submit),
+                      onPressed: () {
+                        formBloc.submit();
+                      },
+                    )
+                  ]),
               body: FormBlocListener<UserFormBloc, String, String>(
                   onFailure: (context, state) {
                     LoadingDialog.hide(context);
@@ -380,7 +389,7 @@ class _UserEditPageState extends State<UserPostPage> {
                                     .user
                                     .last_name),
                           onSubmitted: (value) {
-                            // formBloc.submit();
+                            formBloc.submit();
                           },
                           textInputAction: TextInputAction.done,
                           decoration: InputDecoration(

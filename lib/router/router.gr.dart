@@ -16,9 +16,11 @@ class Routes {
   static const String authentication = '/';
   static const String _userPage = '/users/:id';
   static String userPage({@required dynamic id}) => '/users/$id';
+  static const String faqPage = '/faqs';
   static const all = <String>{
     authentication,
     _userPage,
+    faqPage,
   };
 }
 
@@ -32,6 +34,7 @@ class Router extends RouterBase {
       page: UserPage,
       generator: UserPageRouter(),
     ),
+    RouteDef(Routes.faqPage, page: FaqPage),
   ];
   @override
   Map<Type, AutoRouteFactory> get pagesMap => _pagesMap;
@@ -45,6 +48,12 @@ class Router extends RouterBase {
     UserPage: (data) {
       return CupertinoPageRoute<Widget>(
         builder: (context) => UserPage(),
+        settings: data,
+      );
+    },
+    FaqPage: (data) {
+      return CupertinoPageRoute<dynamic>(
+        builder: (context) => FaqPage(),
         settings: data,
       );
     },

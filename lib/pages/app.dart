@@ -47,17 +47,16 @@ class _EletecAppState extends State<EletecApp> {
               accentColor: Colors.indigoAccent,
               scaffoldBackgroundColor: Colors.grey[200],
               buttonTheme: ButtonThemeData(
-                  buttonColor: Colors.indigoAccent,
-                  hoverColor: Colors.indigo,
+                  buttonColor: Colors.indigo,
+                  hoverColor: Colors.indigoAccent,
                   textTheme: ButtonTextTheme.primary),
               appBarTheme: AppBarTheme(
                   elevation: 0,
                   color: Colors.grey[200],
-                  iconTheme: IconThemeData(color: Colors.indigoAccent),
+                  iconTheme: IconThemeData(color: Colors.indigo),
                   textTheme: GoogleFonts.righteousTextTheme(
                     Theme.of(context).textTheme.apply(
-                        displayColor: Colors.indigoAccent,
-                        bodyColor: Colors.indigoAccent),
+                        displayColor: Colors.indigo, bodyColor: Colors.indigo),
                   ),
                   brightness: Brightness.light),
               dividerColor: Colors.grey,

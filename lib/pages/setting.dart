@@ -136,7 +136,9 @@ class _SettingPageState extends State<SettingPage> {
                       ListTile(
                         leading: FaIcon(FontAwesomeIcons.info),
                         title: Text(Localization.of(context).faqs),
-                        onTap: () {},
+                        onTap: () {
+                          context.navigator.push('/faqs');
+                        },
                       ),
                       Divider(),
                       SwitchListTile(

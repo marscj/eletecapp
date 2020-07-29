@@ -18,6 +18,10 @@ import 'package:flutter/material.dart';
         ),
       ],
     ),
+    CupertinoRoute(
+      path: '/faqs',
+      page: FaqPage,
+    )
   ],
 )
 class $Router {}
