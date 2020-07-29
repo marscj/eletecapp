@@ -4,7 +4,7 @@ abstract class UserEvent extends Equatable {
   const UserEvent();
 }
 
-class UploadUserPhoto extends AppEvent {
+class UploadUserPhoto extends UserEvent {
   final File file;
 
   UploadUserPhoto(this.file);

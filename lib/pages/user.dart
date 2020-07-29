@@ -170,8 +170,8 @@ class _UserPhotoPageState extends State<UserPhotoPage> {
                                               )).then((value) {
                                             if (value != null) {
                                               Navigator.pop(context);
-                                              BlocProvider.of<AppBloc>(context)
-                                                  .add(UploadUserPhoto(value));
+                                              // BlocProvider.of<AppBloc>(context)
+                                              //     .add(UploadUserPhoto(value));
                                             }
                                           });
                                         }
@@ -211,8 +211,8 @@ class _UserPhotoPageState extends State<UserPhotoPage> {
                                               )).then((value) {
                                             if (value != null) {
                                               Navigator.pop(context);
-                                              BlocProvider.of<AppBloc>(context)
-                                                  .add(UploadUserPhoto(value));
+                                              // BlocProvider.of<AppBloc>(context)
+                                              //     .add(UploadUserPhoto(value));
                                             }
                                           });
                                         }
@@ -250,7 +250,7 @@ class _UserPhotoPageState extends State<UserPhotoPage> {
                               NetworkImage(state.user?.photo['thumbnail']))),
                   Center(
                       child: Visibility(
-                    visible: state.loading,
+                    // visible: state.loading,
                     child: CupertinoActivityIndicator(
                       radius: 40,
                     ),
