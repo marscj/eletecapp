@@ -20,6 +20,7 @@ class _FaqPageState extends State<FaqPage> {
                 title: Text(Localization.of(context).faqs),
               ),
               body: SingleChildScrollView(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
                 child: Container(
                     child: ExpansionPanelList(
                   expansionCallback: (int index, bool isExpanded) {
@@ -31,21 +32,14 @@ class _FaqPageState extends State<FaqPage> {
                       state.items.map<ExpansionPanel>((ExpansionItem item) {
                     return ExpansionPanel(
                       headerBuilder: (BuildContext context, bool isExpanded) {
-                        return ListTile(
-                          title: Text(item.headerValue),
-                        );
+                        return Container(
+                            padding: const EdgeInsets.symmetric(vertical: 20),
+                            child: ListTile(
+                              title: Text(item.headerValue),
+                            ));
                       },
-                      body: ListTile(
-                          title: Text(item.expandedValue),
-                          subtitle: Text(
-                              'To delete this panel, tap the trash can icon'),
-                          trailing: Icon(Icons.delete),
-                          onTap: () {
-                            setState(() {
-                              state.items.removeWhere(
-                                  (currentItem) => item == currentItem);
-                            });
-                          }),
+                      body: Container(
+                          child: ListTile(title: Text(item.expandedValue))),
                       isExpanded: item.isExpanded,
                     );
                   }).toList(),
