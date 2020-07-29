@@ -56,13 +56,13 @@ class Localization implements WidgetsLocalizations {
   String get support =>
       'If you have any questions, please call us, or send an email to support@eletec.ae';
 
-  String get address => 'ADDRESS';
+  String get address => 'Address';
 
-  String get contract => 'CONTRACT';
+  String get contract => 'Contract';
 
-  String get faqs => 'FAQS';
+  String get faqs => 'Faqs';
 
-  String get language => 'LANGUAGE';
+  String get language => 'Language';
 
   String get english => 'English';
 
@@ -392,16 +392,16 @@ class $ar extends Localization {
       'If you have any questions, please call us, or send an email to support@eletec.ae';
 
   @override
-  String get address => 'ADDRESS';
+  String get address => 'Address';
 
   @override
-  String get contract => 'CONTRACT';
+  String get contract => 'Contract';
 
   @override
-  String get faqs => 'FAQS';
+  String get faqs => 'Faqs';
 
   @override
-  String get language => 'LANGUAGE';
+  String get language => 'Language';
 
   @override
   String get english => 'English';
@@ -689,16 +689,16 @@ class $en extends Localization {
       'If you have any questions, please call us, or send an email to support@eletec.ae';
 
   @override
-  String get address => 'ADDRESS';
+  String get address => 'Address';
 
   @override
-  String get contract => 'CONTRACT';
+  String get contract => 'Contract';
 
   @override
-  String get faqs => 'FAQS';
+  String get faqs => 'Faqs';
 
   @override
-  String get language => 'LANGUAGE';
+  String get language => 'Language';
 
   @override
   String get english => 'English';

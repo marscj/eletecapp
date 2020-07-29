@@ -119,8 +119,8 @@ class UserPageRouter extends RouterBase {
 
 class ContractPageRoutes {
   static const String contractListPage = '/';
-  static const String _contractPost = '/post/:id?';
-  static String contractPost({dynamic id = ''}) => '/post/$id';
+  static const String _contractPost = '/:id/post';
+  static String contractPost({@required dynamic id}) => '/$id/post';
   static const all = <String>{
     contractListPage,
     _contractPost,

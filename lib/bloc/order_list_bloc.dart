@@ -56,4 +56,10 @@ class OrderListBloc extends Bloc<OrderListEvent, OrderListState> {
       }
     }
   }
+
+  @override
+  Future<void> close() {
+    refreshController.dispose();
+    return super.close();
+  }
 }

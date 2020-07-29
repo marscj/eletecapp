@@ -56,4 +56,10 @@ class ContractBloc extends Bloc<ContractEvent, ContractState> {
       }
     }
   }
+
+  @override
+  Future<void> close() {
+    refreshController.dispose();
+    return super.close();
+  }
 }
