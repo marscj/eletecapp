@@ -9,7 +9,7 @@ class OrderListState extends Equatable {
   const OrderListState(
       {this.list, this.pageNo, this.pageSize, this.totalCount});
 
-  OrderListState initial() => OrderListState(
+  factory OrderListState.initial() => OrderListState(
       list: List<Order>(), pageNo: 1, pageSize: 10, totalCount: 0);
 
   OrderListState copyWith(

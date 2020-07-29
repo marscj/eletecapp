@@ -8,7 +8,7 @@ class LoginState extends Equatable {
 
   LoginState({this.leftTime, this.step});
 
-  LoginState initial() => LoginState(leftTime: 0, step: LogInStep.SEND);
+  factory LoginState.initial() => LoginState(leftTime: 0, step: LogInStep.SEND);
 
   LoginState copyWith({int leftTime, LogInStep step}) =>
       LoginState(leftTime: leftTime ?? this.leftTime, step: step ?? this.step);

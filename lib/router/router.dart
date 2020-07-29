@@ -21,7 +21,11 @@ import 'package:flutter/material.dart';
     CupertinoRoute(
       path: '/faqs',
       page: FaqPage,
-    )
+    ),
+    CupertinoRoute(path: '/contact', page: ContractPage, children: [
+      CupertinoRoute(path: '/', page: ContractListPage),
+      CupertinoRoute(path: '/post/:id?', page: ContractPost)
+    ])
   ],
 )
 class $Router {}

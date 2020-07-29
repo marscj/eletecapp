@@ -6,26 +6,26 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-part 'order_list_event.dart';
-part 'order_list_state.dart';
+part 'contact_event.dart';
+part 'contract_state.dart';
 
-class OrderListBloc extends Bloc<OrderListEvent, OrderListState> {
+class ContractBloc extends Bloc<ContractEvent, ContractState> {
   final BuildContext context;
-
-  OrderListBloc(this.context) : super(OrderListState.initial());
 
   RefreshController refreshController = RefreshController(initialRefresh: true);
 
+  ContractBloc(this.context) : super(ContractState.initial());
+
   @override
-  Stream<OrderListState> mapEventToState(
-    OrderListEvent event,
+  Stream<ContractState> mapEventToState(
+    ContractEvent event,
   ) async* {
-    if (event is RefreshOrderList) {
+    if (event is ContractRefreshList) {
       yield await RestService.instance.getOrders(query: {
         'pageNo': 1,
         'pageSize': state.pageSize,
         'sorter': '-id'
-      }).then<OrderListState>((value) {
+      }).then<ContractState>((value) {
         refreshController.refreshCompleted();
         return state.copyWith(
             list: value.data, pageNo: 2, totalCount: value.totalCount);
@@ -35,13 +35,13 @@ class OrderListBloc extends Bloc<OrderListEvent, OrderListState> {
       });
     }
 
-    if (event is LoadOrderList) {
+    if (event is ContractLoadList) {
       if (state.list.length < state.totalCount) {
         yield await RestService.instance.getOrders(query: {
           'pageNo': state.pageNo,
           'pageSize': state.pageSize,
           'sorter': '-id'
-        }).then<OrderListState>((value) {
+        }).then<ContractState>((value) {
           refreshController.loadComplete();
           return state.copyWith(
               list: state.list + value.data,

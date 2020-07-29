@@ -4,7 +4,7 @@ abstract class OrderListEvent extends Equatable {
   const OrderListEvent();
 
   @override
-  List<Object> get props => throw UnimplementedError();
+  List<Object> get props => [];
 }
 
 class RefreshOrderList extends OrderListEvent {}

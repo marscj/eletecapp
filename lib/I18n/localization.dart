@@ -49,7 +49,7 @@ class Localization implements WidgetsLocalizations {
 
   String get ourServices => 'Our Services';
 
-  String get contactUs => 'Contact Us';
+  String get contactUs => 'Contract Us';
 
   String get call => 'CALL';
 
@@ -382,7 +382,7 @@ class $ar extends Localization {
   String get ourServices => 'Our Services';
 
   @override
-  String get contactUs => 'Contact Us';
+  String get contactUs => 'Contract Us';
 
   @override
   String get call => 'CALL';
@@ -679,7 +679,7 @@ class $en extends Localization {
   String get ourServices => 'Our Services';
 
   @override
-  String get contactUs => 'Contact Us';
+  String get contactUs => 'Contract Us';
 
   @override
   String get call => 'CALL';
