@@ -174,6 +174,23 @@ Map<String, dynamic> _$ContractToJson(Contract instance) => <String, dynamic>{
       'id': instance.id,
     };
 
+ContractList _$ContractListFromJson(Map<String, dynamic> json) {
+  return ContractList()
+    ..totalCount = json['totalCount'] as int
+    ..pageNo = json['pageNo'] as int
+    ..data = (json['data'] as List)
+        ?.map((e) =>
+            e == null ? null : Contract.fromJson(e as Map<String, dynamic>))
+        ?.toList();
+}
+
+Map<String, dynamic> _$ContractListToJson(ContractList instance) =>
+    <String, dynamic>{
+      'totalCount': instance.totalCount,
+      'pageNo': instance.pageNo,
+      'data': instance.data,
+    };
+
 Job _$JobFromJson(Map<String, dynamic> json) {
   return Job()..id = json['id'] as int;
 }
@@ -300,6 +317,26 @@ class _RestService implements RestService {
             baseUrl: baseUrl),
         data: _data);
     final value = OrderList.fromJson(_result.data);
+    return value;
+  }
+
+  @override
+  getContracts({query}) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    queryParameters.addAll(query ?? <String, dynamic>{});
+    queryParameters.removeWhere((k, v) => v == null);
+    final _data = <String, dynamic>{};
+    final Response<Map<String, dynamic>> _result = await _dio.request(
+        '/contracts/',
+        queryParameters: queryParameters,
+        options: RequestOptions(
+            method: 'GET',
+            headers: <String, dynamic>{},
+            extra: _extra,
+            baseUrl: baseUrl),
+        data: _data);
+    final value = ContractList.fromJson(_result.data);
     return value;
   }
 

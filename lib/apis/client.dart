@@ -117,6 +117,9 @@ abstract class RestService {
   @GET('/orders/')
   Future<OrderList> getOrders({@Queries() Map<String, dynamic> query});
 
+  @GET('/contracts/')
+  Future<ContractList> getContracts({@Queries() Map<String, dynamic> query});
+
   @GET('/orders/{id}/')
   Future<Order> getOrder(@Path("id") String id);
 

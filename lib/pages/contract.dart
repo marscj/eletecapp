@@ -55,12 +55,12 @@ class _ContractListPageState extends State<ContractListPage> {
               },
             ),
             controller: bloc.refreshController,
-            onRefresh: () => bloc.add(RefreshOrderList()),
-            onLoading: () => bloc.add(LoadOrderList()),
+            onRefresh: () => bloc.add(ContractRefreshList()),
+            onLoading: () => bloc.add(ContractLoadList()),
             child: ListView.separated(
               padding: const EdgeInsets.symmetric(horizontal: 8),
               separatorBuilder: (_, index) => new Divider(),
-              itemBuilder: (c, i) => OrderListItem(order: state.list[i]),
+              itemBuilder: (c, i) => Text('${state.list[i].id}'),
               itemCount: state.list.length,
             ),
           );

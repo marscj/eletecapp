@@ -21,7 +21,7 @@ class ContractBloc extends Bloc<ContractEvent, ContractState> {
     ContractEvent event,
   ) async* {
     if (event is ContractRefreshList) {
-      yield await RestService.instance.getOrders(query: {
+      yield await RestService.instance.getContracts(query: {
         'pageNo': 1,
         'pageSize': state.pageSize,
         'sorter': '-id'
@@ -37,7 +37,7 @@ class ContractBloc extends Bloc<ContractEvent, ContractState> {
 
     if (event is ContractLoadList) {
       if (state.list.length < state.totalCount) {
-        yield await RestService.instance.getOrders(query: {
+        yield await RestService.instance.getContracts(query: {
           'pageNo': state.pageNo,
           'pageSize': state.pageSize,
           'sorter': '-id'

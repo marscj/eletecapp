@@ -14,3 +14,18 @@ class Contract extends Equatable {
   @override
   List<Object> get props => [id];
 }
+
+@JsonSerializable()
+class ContractList extends Equatable {
+  int totalCount;
+  int pageNo;
+
+  List<Contract> data;
+
+  static ContractList fromJson(Map<String, dynamic> json) =>
+      _$ContractListFromJson(json);
+  Map<String, dynamic> toJson() => _$ContractListToJson(this);
+
+  @override
+  List<Object> get props => [totalCount, pageNo];
+}
