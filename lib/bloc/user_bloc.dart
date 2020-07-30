@@ -8,7 +8,6 @@ import 'package:eletecapp/bloc/app_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
-import 'package:form_field_validator/form_field_validator.dart';
 
 part 'user_event.dart';
 part 'user_state.dart';

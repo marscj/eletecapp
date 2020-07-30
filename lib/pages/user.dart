@@ -75,9 +75,9 @@ class _UserProfilePageState extends State<UserProfilePage> {
         ),
         body: BlocBuilder<AppBloc, AppState>(builder: (context, state) {
           return ListView(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
             children: <Widget>[
               Card(
-                color: Colors.white,
                 child: ListBody(
                   children: <Widget>[
                     Container(
@@ -107,9 +107,23 @@ class _UserProfilePageState extends State<UserProfilePage> {
                     ),
                     Divider(),
                     ListTile(
+                        leading: Text(Localization.of(context).phoneNumber),
+                        trailing: SizedBox(
+                            width: 120,
+                            child: Align(
+                                alignment: Alignment.centerRight,
+                                child: Text(
+                                  '${state.user.username}',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyText1
+                                      .copyWith(color: Colors.grey),
+                                )))),
+                    Divider(),
+                    ListTile(
                       leading: Text(Localization.of(context).firstName),
                       trailing: SizedBox(
-                          width: 80,
+                          width: 120,
                           child: Align(
                               alignment: Alignment.centerRight,
                               child: Text('${state.user.first_name}'))),
@@ -121,7 +135,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                     ListTile(
                       leading: Text(Localization.of(context).lastName),
                       trailing: SizedBox(
-                          width: 80,
+                          width: 120,
                           child: Align(
                             alignment: Alignment.centerRight,
                             child: Text('${state.user.last_name}'),
@@ -129,9 +143,16 @@ class _UserProfilePageState extends State<UserProfilePage> {
                       onTap: () {
                         ExtendedNavigator.of(context).push('/post/last_name');
                       },
-                    )
+                    ),
                   ],
                 ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              RaisedButton(
+                child: Text('shenq'),
+                onPressed: () {},
               )
             ],
           );

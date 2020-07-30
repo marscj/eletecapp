@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
+// ignore_for_file: close_sinks
 class ContractPage extends StatefulWidget {
   @override
   _ContractPageState createState() => _ContractPageState();
