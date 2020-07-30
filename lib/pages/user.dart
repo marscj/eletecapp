@@ -121,6 +121,18 @@ class _UserProfilePageState extends State<UserProfilePage> {
                                 )))),
                     Divider(),
                     ListTile(
+                      leading: Text(Localization.of(context).email),
+                      trailing: SizedBox(
+                          width: 120,
+                          child: Align(
+                              alignment: Alignment.centerRight,
+                              child: Text('${state.user.first_name}'))),
+                      onTap: () {
+                        ExtendedNavigator.of(context).push('/post/first_name');
+                      },
+                    ),
+                    Divider(),
+                    ListTile(
                       leading: Text(Localization.of(context).firstName),
                       trailing: SizedBox(
                           width: 120,
@@ -150,8 +162,8 @@ class _UserProfilePageState extends State<UserProfilePage> {
               SizedBox(
                 height: 20,
               ),
-              RaisedButton(
-                child: Text('shenq'),
+              FlatButton(
+                child: Text('${Localization.of(context).joinUs}'),
                 onPressed: () {},
               )
             ],

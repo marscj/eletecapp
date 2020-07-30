@@ -86,6 +86,10 @@ class Localization implements WidgetsLocalizations {
 
   String get userProfile => 'User Profile';
 
+  String get joinUs => 'Join Us ?';
+
+  String get email => 'Email';
+
   List<String> get contractOption =>
       ['Economy', 'Standard', 'Premium', 'Customized'];
 
@@ -440,6 +444,12 @@ class $ar extends Localization {
   String get userProfile => 'User Profile';
 
   @override
+  String get joinUs => 'Join Us ?';
+
+  @override
+  String get email => 'Email';
+
+  @override
   List<String> get contractOption =>
       ['Economy', 'Standard', 'Premium', 'Customized'];
 
@@ -739,6 +749,12 @@ class $en extends Localization {
 
   @override
   String get userProfile => 'User Profile';
+
+  @override
+  String get joinUs => 'Join Us ?';
+
+  @override
+  String get email => 'Email';
 
   @override
   List<String> get contractOption =>

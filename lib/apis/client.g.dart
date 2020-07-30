@@ -147,6 +147,9 @@ User _$UserFromJson(Map<String, dynamic> json) {
     ..is_staff = json['is_staff'] as bool
     ..is_active = json['is_active'] as bool
     ..is_superuser = json['is_superuser'] as bool
+    ..email = json['email'] == null
+        ? null
+        : EmailAddress.fromJson(json['email'] as Map<String, dynamic>)
     ..role = json['role'] as int
     ..photo = (json['photo'] as Map<String, dynamic>)?.map(
       (k, e) => MapEntry(k, e as String),
@@ -162,8 +165,21 @@ Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
       'is_staff': instance.is_staff,
       'is_active': instance.is_active,
       'is_superuser': instance.is_superuser,
+      'email': instance.email,
       'role': instance.role,
       'photo': instance.photo,
+    };
+
+EmailAddress _$EmailAddressFromJson(Map<String, dynamic> json) {
+  return EmailAddress()
+    ..email = json['email'] as String
+    ..verified = json['verified'] as bool;
+}
+
+Map<String, dynamic> _$EmailAddressToJson(EmailAddress instance) =>
+    <String, dynamic>{
+      'email': instance.email,
+      'verified': instance.verified,
     };
 
 Visit _$VisitFromJson(Map<String, dynamic> json) {
@@ -427,6 +443,27 @@ class _RestService implements RestService {
             baseUrl: baseUrl),
         data: _data);
     final value = Token.fromJson(_result.data);
+    return value;
+  }
+
+  @override
+  emailGenerate(playload) async {
+    ArgumentError.checkNotNull(playload, 'playload');
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(playload ?? <String, dynamic>{});
+    _data.removeWhere((k, v) => v == null);
+    final Response<Map<String, dynamic>> _result = await _dio.request(
+        '/auth/email/generate/',
+        queryParameters: queryParameters,
+        options: RequestOptions(
+            method: 'POST',
+            headers: <String, dynamic>{},
+            extra: _extra,
+            baseUrl: baseUrl),
+        data: _data);
+    final value = Otp.fromJson(_result.data);
     return value;
   }
 }

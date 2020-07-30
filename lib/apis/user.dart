@@ -13,6 +13,7 @@ class User extends Equatable {
   bool is_staff;
   bool is_active;
   bool is_superuser;
+  EmailAddress email;
 
   int role;
   Map<String, String> photo;
@@ -32,4 +33,17 @@ class User extends Equatable {
         role,
         photo
       ];
+}
+
+@JsonSerializable()
+class EmailAddress extends Equatable {
+  String email;
+  bool verified;
+
+  static EmailAddress fromJson(Map<String, dynamic> json) =>
+      _$EmailAddressFromJson(json);
+  Map<String, dynamic> toJson() => _$EmailAddressToJson(this);
+
+  @override
+  List<Object> get props => [email, verified];
 }
