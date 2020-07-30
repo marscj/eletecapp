@@ -69,15 +69,25 @@ class UserFormBloc extends FormBloc<String, String> {
   @override
   void onSubmitting() {
     AppBloc appBloc = BlocProvider.of<AppBloc>(context);
-    RouteData routeData = RouteData.of(context);
+    String fieldName = RouteData.of(context).pathParams['field'].value;
 
-    RestService.instance.updateUser(appBloc.state.user.id,
-        {'${routeData.pathParams['field'].value}': field.value}).then((user) {
-      appBloc.add(UpdateAppUser(user));
-      emitSuccess(canSubmitAgain: true);
-    }).catchError((onError) {
-      emitFailure();
-      addErrors(onError?.response?.data);
-    });
+    if (fieldName != 'email') {
+      RestService.instance.updateUser(
+          appBloc.state.user.id, {'$fieldName': field.value}).then((user) {
+        appBloc.add(UpdateAppUser(user));
+        emitSuccess(canSubmitAgain: true);
+      }).catchError((onError) {
+        emitFailure();
+        addErrors(onError?.response?.data);
+      });
+    } else {
+      RestService.instance.emailGenerate({'email': field.value}).then((value) {
+        appBloc.add(AuthenticationStart());
+        emitSuccess(canSubmitAgain: true);
+      }).catchError((onError) {
+        emitFailure();
+        addErrors(onError?.response?.data);
+      });
+    }
   }
 }

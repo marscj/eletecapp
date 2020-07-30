@@ -129,8 +129,11 @@ abstract class RestService {
   @POST('/auth/phone/validate/')
   Future<Token> phoneValidate(@Body() Map<String, dynamic> playload);
 
-  @POST('/auth/email/generate/')
-  Future<Otp> emailGenerate(@Body() Map<String, dynamic> playload);
+  @POST('auth/email/code/generate/')
+  Future<EmailAddress> emailGenerate(@Body() Map<String, dynamic> playload);
+
+  @POST('auth/email/code/validate/')
+  Future<EmailAddress> emailValidate(@Body() Map<String, dynamic> playload);
 }
 
 class RestServiceExtra {

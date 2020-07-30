@@ -90,6 +90,8 @@ class Localization implements WidgetsLocalizations {
 
   String get email => 'Email';
 
+  String verfiy(bool b) => b ? 'Verified' : 'unverified';
+
   List<String> get contractOption =>
       ['Economy', 'Standard', 'Premium', 'Customized'];
 
@@ -450,6 +452,9 @@ class $ar extends Localization {
   String get email => 'Email';
 
   @override
+  String verfiy(bool b) => b ? 'verified' : 'unverified';
+
+  @override
   List<String> get contractOption =>
       ['Economy', 'Standard', 'Premium', 'Customized'];
 
@@ -755,6 +760,9 @@ class $en extends Localization {
 
   @override
   String get email => 'Email';
+
+  @override
+  String verfiy(bool b) => b ? 'verified' : 'unverified';
 
   @override
   List<String> get contractOption =>
