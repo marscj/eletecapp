@@ -455,7 +455,7 @@ class _RestService implements RestService {
     _data.addAll(playload ?? <String, dynamic>{});
     _data.removeWhere((k, v) => v == null);
     final Response<Map<String, dynamic>> _result = await _dio.request(
-        '/auth/email/generate/',
+        'auth/email/code/generate/',
         queryParameters: queryParameters,
         options: RequestOptions(
             method: 'POST',
@@ -463,7 +463,28 @@ class _RestService implements RestService {
             extra: _extra,
             baseUrl: baseUrl),
         data: _data);
-    final value = Otp.fromJson(_result.data);
+    final value = EmailAddress.fromJson(_result.data);
+    return value;
+  }
+
+  @override
+  emailValidate(playload) async {
+    ArgumentError.checkNotNull(playload, 'playload');
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(playload ?? <String, dynamic>{});
+    _data.removeWhere((k, v) => v == null);
+    final Response<Map<String, dynamic>> _result = await _dio.request(
+        'auth/email/code/validate/',
+        queryParameters: queryParameters,
+        options: RequestOptions(
+            method: 'POST',
+            headers: <String, dynamic>{},
+            extra: _extra,
+            baseUrl: baseUrl),
+        data: _data);
+    final value = EmailAddress.fromJson(_result.data);
     return value;
   }
 }
