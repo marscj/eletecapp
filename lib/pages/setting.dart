@@ -37,9 +37,9 @@ class _SettingPageState extends State<SettingPage> {
                             boxShadow: [
                               BoxShadow(
                                   color: Colors.grey.withOpacity(0.5),
-                                  spreadRadius: 3,
-                                  blurRadius: 5,
-                                  offset: Offset(1, 3)),
+                                  spreadRadius: 1,
+                                  blurRadius: 2,
+                                  offset: Offset(0, 1)),
                             ],
                             borderRadius: BorderRadius.circular(4),
                           ),

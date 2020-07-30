@@ -74,6 +74,8 @@ class UserFormBloc extends FormBloc<String, String> {
     if (fieldName != 'email') {
       RestService.instance.updateUser(
           appBloc.state.user.id, {'$fieldName': field.value}).then((user) {
+        return RestService.instance.getInfo();
+      }).then((user) {
         appBloc.add(UpdateAppUser(user));
         emitSuccess(canSubmitAgain: true);
       }).catchError((onError) {
@@ -82,7 +84,9 @@ class UserFormBloc extends FormBloc<String, String> {
       });
     } else {
       RestService.instance.emailGenerate({'email': field.value}).then((value) {
-        appBloc.add(AuthenticationStart());
+        return RestService.instance.getInfo();
+      }).then((user) {
+        appBloc.add(UpdateAppUser(user));
         emitSuccess(canSubmitAgain: true);
       }).catchError((onError) {
         emitFailure();

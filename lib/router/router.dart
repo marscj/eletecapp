@@ -16,6 +16,7 @@ import 'package:flutter/material.dart';
           path: '/post/:field?',
           page: UserPostPage,
         ),
+        CupertinoRoute(path: '/emailvalidate/:email?', page: EmailValidatePage)
       ],
     ),
     CupertinoRoute(
@@ -24,7 +25,7 @@ import 'package:flutter/material.dart';
     ),
     CupertinoRoute(path: '/contract', page: ContractPage, children: [
       CupertinoRoute(path: '/', page: ContractListPage),
-      CupertinoRoute(path: '/:id/post', page: ContractPost)
+      CupertinoRoute(path: '/:id/post', page: ContractPost),
     ])
   ],
 )

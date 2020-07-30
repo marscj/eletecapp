@@ -90,6 +90,8 @@ class Localization implements WidgetsLocalizations {
 
   String get email => 'Email';
 
+  String get code => 'Code';
+
   String verfiy(bool b) => b ? 'Verified' : 'unverified';
 
   List<String> get contractOption =>
@@ -452,6 +454,9 @@ class $ar extends Localization {
   String get email => 'Email';
 
   @override
+  String get code => 'Code';
+
+  @override
   String verfiy(bool b) => b ? 'verified' : 'unverified';
 
   @override
@@ -642,7 +647,7 @@ class $ar extends Localization {
 لكل خدمة نقدمها, نقدم ضمان خدمة لمدة 7 أيام و سوف نعود و نحاول إصلاحه مجانا في حال المشكلة في الأجزاء أو مواد أي عائد على ذلك يعتمد على الضمان الذي يأتي من المورد. عموما الأجزاء المستقلة لا تأتي مع الضمان عندما نشتريه أيضا ضمان خدمتنا هو لإصلاح و التركيب فقط. 
 '''),
         new FAQ('كيف يمكنني الوصول إلى الفني المخصص لي بعد تعيينه لي؟', '''
- مجرد تعيين أحد لعميل ، يمكن للعميل الاتصال بالمشرف على الهاتف عن طريق الاتصال بالرقم المقدم في تطبيق الجوال. هذا يتجنب الازعاج من الادخار للأرقام المهنية في كل مرة تقوم فيها بخدمة الصيانة المنزلية. لا يوجد اتصال مباشر ممكّن بين الفني والعميل.
+ مجرد تعيين أحد لعميل ، يمكن للعميل الاتصال بالمشرف على الهاتف عن طر��ق الاتصال بالرقم المقدم في تطبيق الجوال. هذا يتجنب الازعاج من الادخار للأرقام المهنية في كل مرة تقوم فيها بخدمة الصيانة المنزلية. لا يوجد اتصال مباشر ممكّن بين الفني والعميل.
 
 '''),
         new FAQ('هل يمكنني إلغاء الحجز؟', '''
@@ -760,6 +765,9 @@ class $en extends Localization {
 
   @override
   String get email => 'Email';
+
+  @override
+  String get code => 'Code';
 
   @override
   String verfiy(bool b) => b ? 'verified' : 'unverified';

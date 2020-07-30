@@ -3,6 +3,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:eletecapp/I18n/i18n.dart';
 import 'package:eletecapp/apis/client.dart';
 import 'package:eletecapp/bloc/app_bloc.dart';
+import 'package:eletecapp/bloc/email_form_bloc.dart';
 import 'package:eletecapp/bloc/user_bloc.dart';
 import 'package:eletecapp/router/router.gr.dart';
 import 'package:eletecapp/views/ifnone_widget.dart';
@@ -16,6 +17,7 @@ import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:loading_animations/loading_animations.dart';
 import 'package:photo_view/photo_view.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
 
 // ignore_for_file: close_sinks
 
@@ -425,7 +427,12 @@ class _UserEditPageState extends State<UserPostPage> {
                   },
                   onSuccess: (context, state) {
                     LoadingDialog.hide(context);
-                    Navigator.pop(context);
+                    if (field == 'email') {
+                      context.navigator
+                          .push('/emailvalidate/${formBloc.field.value}');
+                    } else {
+                      Navigator.pop(context);
+                    }
                   },
                   onSubmitting: (context, state) {
                     LoadingDialog.show(context);
@@ -446,6 +453,103 @@ class _UserEditPageState extends State<UserPostPage> {
                           )),
                     ],
                   )));
+        }));
+  }
+}
+
+class EmailValidatePage extends StatefulWidget {
+  @override
+  _EmailValidatePageState createState() => _EmailValidatePageState();
+}
+
+class _EmailValidatePageState extends State<EmailValidatePage> {
+  @override
+  Widget build(BuildContext context) {
+    String value = RouteData.of(context).pathParams['email'].value;
+
+    return BlocProvider<EmailFormBloc>(
+        create: (context) => EmailFormBloc(context),
+        child: Builder(builder: (context) {
+          EmailFormBloc formBloc = BlocProvider.of<EmailFormBloc>(context);
+
+          return Scaffold(
+            appBar: AppBar(title: Text(value), actions: <Widget>[
+              FlatButton(
+                child: Text(Localization.of(context).submit),
+                onPressed: () {
+                  formBloc.submit();
+                },
+              )
+            ]),
+            body: FormBlocListener<EmailFormBloc, String, String>(
+                onFailure: (context, state) {
+                  LoadingDialog.hide(context);
+                },
+                onSuccess: (context, state) {
+                  LoadingDialog.hide(context);
+                  context.navigator.popUntilPath('/');
+                },
+                onSubmitting: (context, state) {
+                  LoadingDialog.show(context);
+                },
+                child: Padding(
+                    padding: const EdgeInsets.all(32.0),
+                    child: ListView(
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 0.0),
+                          child: Text(
+                            Localization.of(context).code,
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 18),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        PinCodeTextField(
+                          length: 4,
+                          obsecureText: false,
+                          animationType: AnimationType.fade,
+                          pinTheme: PinTheme(
+                            shape: PinCodeFieldShape.box,
+                            borderRadius: BorderRadius.circular(5),
+                            fieldHeight: 50,
+                            fieldWidth: 40,
+                            activeFillColor: Colors.white,
+                          ),
+                          animationDuration: Duration(milliseconds: 300),
+                          backgroundColor: Colors.transparent,
+                          enableActiveFill: true,
+                          autoDisposeControllers: false,
+                          onCompleted: (value) {
+                            formBloc.submit();
+                          },
+                          onChanged: (value) {
+                            formBloc.field.updateValue(value);
+                          },
+                          beforeTextPaste: (text) {
+                            return true;
+                          },
+                        ),
+                        BlocBuilder<TextFieldBloc, TextFieldBlocState>(
+                            bloc: BlocProvider.of<EmailFormBloc>(context).field,
+                            builder: (context, state) {
+                              return Container(
+                                alignment: Alignment.center,
+                                child: Text(
+                                  state.error ?? '',
+                                  style: TextStyle(
+                                      color: Colors.red,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w400),
+                                ),
+                              );
+                            }),
+                      ],
+                    ))),
+          );
         }));
   }
 }

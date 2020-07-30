@@ -78,10 +78,14 @@ class UserPageRoutes {
   static const String userPhotoPage = '/photo';
   static const String _userPostPage = '/post/:field?';
   static String userPostPage({dynamic field = ''}) => '/post/$field';
+  static const String _emailValidatePage = '/emailvalidate/:email?';
+  static String emailValidatePage({dynamic email = ''}) =>
+      '/emailvalidate/$email';
   static const all = <String>{
     userProfilePage,
     userPhotoPage,
     _userPostPage,
+    _emailValidatePage,
   };
 }
 
@@ -92,6 +96,7 @@ class UserPageRouter extends RouterBase {
     RouteDef(UserPageRoutes.userProfilePage, page: UserProfilePage),
     RouteDef(UserPageRoutes.userPhotoPage, page: UserPhotoPage),
     RouteDef(UserPageRoutes._userPostPage, page: UserPostPage),
+    RouteDef(UserPageRoutes._emailValidatePage, page: EmailValidatePage),
   ];
   @override
   Map<Type, AutoRouteFactory> get pagesMap => _pagesMap;
@@ -111,6 +116,12 @@ class UserPageRouter extends RouterBase {
     UserPostPage: (data) {
       return CupertinoPageRoute<dynamic>(
         builder: (context) => UserPostPage(),
+        settings: data,
+      );
+    },
+    EmailValidatePage: (data) {
+      return CupertinoPageRoute<dynamic>(
+        builder: (context) => EmailValidatePage(),
         settings: data,
       );
     },

@@ -31,7 +31,8 @@ class User extends Equatable {
         is_active,
         is_superuser,
         role,
-        photo
+        photo,
+        email
       ];
 }
 
