@@ -134,12 +134,12 @@ class _UserProfilePageState extends State<UserProfilePage> {
                             child: Text(
                                 '(${Localization.of(context).verfiy(state.user.email.verified)})')),
                         onTap: () {
-                          ExtendedNavigator.of(context).push('/post/email');
+                          context.navigator.push('/post/email');
                         },
                       ),
                       none: ListTile(
                           onTap: () {
-                            ExtendedNavigator.of(context).push('/post/email');
+                            context.navigator.push('/post/email');
                           },
                           leading: Text('${Localization.of(context).email}')),
                     ),
@@ -150,7 +150,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                           alignment: Alignment.centerRight,
                           child: Text('${state.user.first_name}')),
                       onTap: () {
-                        ExtendedNavigator.of(context).push('/post/first_name');
+                        context.navigator.push('/post/first_name');
                       },
                     ),
                     Divider(),
@@ -160,7 +160,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                           alignment: Alignment.centerRight,
                           child: Text('${state.user.last_name}')),
                       onTap: () {
-                        ExtendedNavigator.of(context).push('/post/last_name');
+                        context.navigator.push('/join');
                       },
                     ),
                   ],
@@ -551,5 +551,17 @@ class _EmailValidatePageState extends State<EmailValidatePage> {
                     ))),
           );
         }));
+  }
+}
+
+class JoinPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(Localization.of(context).joinUs),
+      ),
+      body: Container(),
+    );
   }
 }

@@ -16,7 +16,8 @@ import 'package:flutter/material.dart';
           path: '/post/:field?',
           page: UserPostPage,
         ),
-        CupertinoRoute(path: '/emailvalidate/:email?', page: EmailValidatePage)
+        CupertinoRoute(path: '/emailvalidate/:email?', page: EmailValidatePage),
+        CupertinoRoute(path: '/join', page: JoinPage)
       ],
     ),
     CupertinoRoute(

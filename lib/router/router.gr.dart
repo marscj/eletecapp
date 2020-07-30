@@ -81,11 +81,13 @@ class UserPageRoutes {
   static const String _emailValidatePage = '/emailvalidate/:email?';
   static String emailValidatePage({dynamic email = ''}) =>
       '/emailvalidate/$email';
+  static const String joinPage = '/join';
   static const all = <String>{
     userProfilePage,
     userPhotoPage,
     _userPostPage,
     _emailValidatePage,
+    joinPage,
   };
 }
 
@@ -97,6 +99,7 @@ class UserPageRouter extends RouterBase {
     RouteDef(UserPageRoutes.userPhotoPage, page: UserPhotoPage),
     RouteDef(UserPageRoutes._userPostPage, page: UserPostPage),
     RouteDef(UserPageRoutes._emailValidatePage, page: EmailValidatePage),
+    RouteDef(UserPageRoutes.joinPage, page: JoinPage),
   ];
   @override
   Map<Type, AutoRouteFactory> get pagesMap => _pagesMap;
@@ -122,6 +125,12 @@ class UserPageRouter extends RouterBase {
     EmailValidatePage: (data) {
       return CupertinoPageRoute<dynamic>(
         builder: (context) => EmailValidatePage(),
+        settings: data,
+      );
+    },
+    JoinPage: (data) {
+      return CupertinoPageRoute<dynamic>(
+        builder: (context) => JoinPage(),
         settings: data,
       );
     },
