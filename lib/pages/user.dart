@@ -160,7 +160,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                           alignment: Alignment.centerRight,
                           child: Text('${state.user.last_name}')),
                       onTap: () {
-                        context.navigator.push('/join');
+                        context.navigator.push('/post/last_name');
                       },
                     ),
                   ],
@@ -171,7 +171,9 @@ class _UserProfilePageState extends State<UserProfilePage> {
               ),
               FlatButton(
                 child: Text('${Localization.of(context).joinUs}'),
-                onPressed: () {},
+                onPressed: () {
+                  context.navigator.push('/join');
+                },
               )
             ],
           );
