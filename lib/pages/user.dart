@@ -170,7 +170,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                 height: 20,
               ),
               FlatButton(
-                child: Text('${Localization.of(context).joinUs}'),
+                child: Text('${Localization.of(context).joinUs} ?'),
                 onPressed: () {
                   context.navigator.push('/join');
                 },
@@ -560,10 +560,32 @@ class JoinPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(Localization.of(context).joinUs),
-      ),
-      body: Container(),
-    );
+        appBar: AppBar(
+          title: Text(Localization.of(context).joinUs),
+        ),
+        body: ListView(
+          padding: const EdgeInsets.symmetric(horizontal: 8),
+          children: <Widget>[
+            Container(
+              height: 128,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(8)),
+                  shape: BoxShape.rectangle,
+                  image: DecorationImage(
+                      image: ExactAssetImage('assets/images/join.png'))),
+            ),
+            SizedBox(height: 20),
+            Expanded(
+              child: Container(
+                alignment: Alignment.center,
+                padding: const EdgeInsets.all(40),
+                child: Text(
+                  Localization.of(context).sendJoninfo,
+                  style: TextStyle(fontSize: 20),
+                ),
+              ),
+            )
+          ],
+        ));
   }
 }
