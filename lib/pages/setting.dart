@@ -123,7 +123,9 @@ class _SettingPageState extends State<SettingPage> {
                       ListTile(
                         leading: FaIcon(FontAwesomeIcons.addressCard),
                         title: Text(Localization.of(context).address),
-                        onTap: () {},
+                        onTap: () {
+                          context.navigator.push('/address');
+                        },
                       ),
                       Divider(),
                       ListTile(

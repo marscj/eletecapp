@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route_annotations.dart';
+import 'package:eletecapp/pages/address.dart';
 import 'package:eletecapp/pages/pages.dart';
 import 'package:flutter/material.dart';
 
@@ -27,6 +28,10 @@ import 'package:flutter/material.dart';
     CupertinoRoute(path: '/contract', page: ContractPage, children: [
       CupertinoRoute(path: '/', page: ContractListPage),
       CupertinoRoute(path: '/:id/post', page: ContractPost),
+    ]),
+    CupertinoRoute(path: '/address', page: AddressPage, children: [
+      CupertinoRoute(path: '/', page: AddressListPage),
+      CupertinoRoute(path: '/:id/post', page: AddressPostPage)
     ])
   ],
 )

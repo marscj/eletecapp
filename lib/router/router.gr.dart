@@ -10,6 +10,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../pages/address.dart';
 import '../pages/pages.dart';
 
 class Routes {
@@ -18,11 +19,13 @@ class Routes {
   static String userPage({@required dynamic id}) => '/users/$id';
   static const String faqPage = '/faqs';
   static const String contractPage = '/contract';
+  static const String addressPage = '/address';
   static const all = <String>{
     authentication,
     _userPage,
     faqPage,
     contractPage,
+    addressPage,
   };
 }
 
@@ -41,6 +44,11 @@ class Router extends RouterBase {
       Routes.contractPage,
       page: ContractPage,
       generator: ContractPageRouter(),
+    ),
+    RouteDef(
+      Routes.addressPage,
+      page: AddressPage,
+      generator: AddressPageRouter(),
     ),
   ];
   @override
@@ -67,6 +75,12 @@ class Router extends RouterBase {
     ContractPage: (data) {
       return CupertinoPageRoute<dynamic>(
         builder: (context) => ContractPage(),
+        settings: data,
+      );
+    },
+    AddressPage: (data) {
+      return CupertinoPageRoute<dynamic>(
+        builder: (context) => AddressPage(),
         settings: data,
       );
     },
@@ -166,6 +180,41 @@ class ContractPageRouter extends RouterBase {
     ContractPost: (data) {
       return CupertinoPageRoute<dynamic>(
         builder: (context) => ContractPost(),
+        settings: data,
+      );
+    },
+  };
+}
+
+class AddressPageRoutes {
+  static const String addressListPage = '/';
+  static const String _addressPostPage = '/:id/post';
+  static String addressPostPage({@required dynamic id}) => '/$id/post';
+  static const all = <String>{
+    addressListPage,
+    _addressPostPage,
+  };
+}
+
+class AddressPageRouter extends RouterBase {
+  @override
+  List<RouteDef> get routes => _routes;
+  final _routes = <RouteDef>[
+    RouteDef(AddressPageRoutes.addressListPage, page: AddressListPage),
+    RouteDef(AddressPageRoutes._addressPostPage, page: AddressPostPage),
+  ];
+  @override
+  Map<Type, AutoRouteFactory> get pagesMap => _pagesMap;
+  final _pagesMap = <Type, AutoRouteFactory>{
+    AddressListPage: (data) {
+      return CupertinoPageRoute<dynamic>(
+        builder: (context) => AddressListPage(),
+        settings: data,
+      );
+    },
+    AddressPostPage: (data) {
+      return CupertinoPageRoute<dynamic>(
+        builder: (context) => AddressPostPage(),
         settings: data,
       );
     },

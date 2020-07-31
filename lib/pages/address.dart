@@ -1,3 +1,5 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:eletecapp/router/router.gr.dart';
 import 'package:flutter/material.dart';
 
 class AddressPage extends StatefulWidget {
@@ -8,7 +10,10 @@ class AddressPage extends StatefulWidget {
 class _AddressPageState extends State<AddressPage> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return ExtendedNavigator(
+      name: 'address',
+      initialRoute: AddressPageRoutes.addressListPage,
+    );
   }
 }
 
@@ -18,6 +23,18 @@ class AddressListPage extends StatefulWidget {
 }
 
 class _AddressListPageState extends State<AddressListPage> {
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+
+class AddressPostPage extends StatefulWidget {
+  @override
+  _AddressPostPageState createState() => _AddressPostPageState();
+}
+
+class _AddressPostPageState extends State<AddressPostPage> {
   @override
   Widget build(BuildContext context) {
     return Container();
