@@ -44,7 +44,7 @@ class LoginView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        color: Colors.indigo.shade50,
+        color: Colors.blue.shade50,
         child: Column(
           children: [
             SizedBox(height: 50),
@@ -213,7 +213,7 @@ class VerifyView extends StatelessWidget {
                     activeFillColor: Colors.white,
                   ),
                   animationDuration: Duration(milliseconds: 300),
-                  backgroundColor: Colors.indigo.shade50,
+                  backgroundColor: Colors.blue.shade50,
                   enableActiveFill: false,
                   autoDisposeControllers: true,
                   onCompleted: (value) {

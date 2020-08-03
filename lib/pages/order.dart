@@ -69,7 +69,7 @@ class OrderListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final MaterialColor bgColor = Colors.indigo;
+    final MaterialColor bgColor = Colors.blue;
 
     final List<String> images = [
       'assets/images/ac.png',

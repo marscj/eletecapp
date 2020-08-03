@@ -32,7 +32,7 @@ class _SettingPageState extends State<SettingPage> {
                             gradient: LinearGradient(
                                 begin: Alignment.topCenter,
                                 end: Alignment.bottomCenter,
-                                colors: [Colors.indigoAccent, Colors.indigo],
+                                colors: [Colors.blueAccent, Colors.blue],
                                 tileMode: TileMode.repeated),
                             boxShadow: [
                               BoxShadow(

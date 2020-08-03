@@ -8,7 +8,7 @@ class RallyTab extends StatefulWidget {
     int tabIndex,
     TabController tabController,
     this.isVertical,
-    this.color = Colors.indigoAccent,
+    this.color = Colors.blueAccent,
     this.tabCount = 1,
   })  : titleText = Text(title, style: textStyle),
         isExpanded = tabController.index == tabIndex,

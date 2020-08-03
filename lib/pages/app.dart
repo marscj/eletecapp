@@ -43,29 +43,29 @@ class _EletecAppState extends State<EletecApp> {
             builder: (context, child) => child,
           ),
           theme: ThemeData(
-              primarySwatch: Colors.indigo,
-              accentColor: Colors.indigoAccent,
+              primarySwatch: Colors.blue,
+              accentColor: Colors.blueAccent,
               scaffoldBackgroundColor: Colors.grey[200],
               buttonTheme: ButtonThemeData(
-                  buttonColor: Colors.indigo,
-                  hoverColor: Colors.indigoAccent,
+                  buttonColor: Colors.blue,
+                  hoverColor: Colors.blueAccent,
                   textTheme: ButtonTextTheme.primary),
               appBarTheme: AppBarTheme(
                   elevation: 0,
                   color: Colors.grey[200],
-                  iconTheme: IconThemeData(color: Colors.indigo),
+                  iconTheme: IconThemeData(color: Colors.blue),
                   textTheme: GoogleFonts.righteousTextTheme(
                     Theme.of(context).textTheme.apply(
-                        displayColor: Colors.indigo, bodyColor: Colors.indigo),
+                        displayColor: Colors.blue, bodyColor: Colors.blue),
                   ),
                   brightness: Brightness.light),
               dividerColor: Colors.grey,
               textTheme: GoogleFonts.righteousTextTheme(
                 Theme.of(context).textTheme,
               ),
-              highlightColor: Colors.indigoAccent,
-              hoverColor: Colors.indigoAccent.withOpacity(0.04),
-              splashColor: Colors.indigoAccent),
+              highlightColor: Colors.blueAccent,
+              hoverColor: Colors.blueAccent.withOpacity(0.04),
+              splashColor: Colors.blueAccent),
         );
       }));
 }

@@ -41,7 +41,7 @@ class CRaisedButton extends StatelessWidget {
                   ? BounceInUp(
                       child: LoadingBouncingGrid.square(
                           size: 45,
-                          backgroundColor: Colors.indigoAccent,
+                          backgroundColor: Colors.blueAccent,
                           inverted: true))
                   : RaisedButton(onPressed: onPressed, child: child),
             ));

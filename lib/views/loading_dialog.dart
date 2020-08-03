@@ -24,7 +24,7 @@ class LoadingDialog extends StatelessWidget {
             height: 80,
             padding: EdgeInsets.all(12.0),
             child: LoadingBouncingGrid.square(
-                backgroundColor: Colors.indigoAccent, inverted: true),
+                backgroundColor: Colors.blueAccent, inverted: true),
           ),
         ),
       ),

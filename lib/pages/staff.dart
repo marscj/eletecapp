@@ -41,7 +41,7 @@ class _StaffPageState extends State<StaffPage>
                 Theme.of(context).textTheme.button.copyWith(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
-                    color: Colors.indigo)),
+                    color: Colors.blue)),
             tabController: _tabController,
           ),
           Expanded(
@@ -68,7 +68,7 @@ class _StaffPageState extends State<StaffPage>
         tabIndex: 0,
         tabController: _tabController,
         isVertical: false,
-        color: Colors.indigo,
+        color: Colors.blue,
         tabCount: 2,
       ),
       RallyTab(
@@ -78,7 +78,7 @@ class _StaffPageState extends State<StaffPage>
         tabIndex: 1,
         tabController: _tabController,
         isVertical: false,
-        color: Colors.indigo,
+        color: Colors.blue,
         tabCount: 2,
       ),
     ];

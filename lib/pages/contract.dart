@@ -99,9 +99,9 @@ class _ContractItemState extends State<ContractItem> {
   Widget build(BuildContext context) {
     return Theme(
       data: Theme.of(context).copyWith(
-          secondaryHeaderColor: Colors.indigo, // card header background
+          secondaryHeaderColor: Colors.blue, // card header background
           cardColor: Colors.white, // card field background
-          buttonColor: Colors.indigo, // button background color
+          buttonColor: Colors.blue, // button background color
           textTheme: Theme.of(context).textTheme.copyWith(
                 button: Theme.of(context)
                     .textTheme

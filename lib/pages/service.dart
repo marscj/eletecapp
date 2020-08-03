@@ -107,7 +107,7 @@ class _GridPhotoItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Color bgColor = Colors.indigo[200];
+    final Color bgColor = Colors.blue[200];
 
     final Widget image = Image.asset(
       photo.assetName,
@@ -153,7 +153,7 @@ class CallMeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final MaterialColor bgColor = Colors.indigo;
+    final MaterialColor bgColor = Colors.blue;
     final padding = const EdgeInsets.symmetric(vertical: 16, horizontal: 14);
 
     return Container(

@@ -37,7 +37,7 @@ class FtechUserPage extends StatelessWidget {
             right: 0,
             child: FadeInUp(
                 child: LoadingBouncingGrid.square(
-                    backgroundColor: Colors.indigoAccent, inverted: true)))
+                    backgroundColor: Colors.blueAccent, inverted: true)))
       ],
     ));
   }

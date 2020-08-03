@@ -25,7 +25,7 @@ class AddressListPage extends StatefulWidget {
 class _AddressListPageState extends State<AddressListPage> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold();
   }
 }
 
@@ -37,6 +37,6 @@ class AddressPostPage extends StatefulWidget {
 class _AddressPostPageState extends State<AddressPostPage> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold();
   }
 }
